@@ -19,8 +19,8 @@ const LandingPage = () => {
     return ( 
         <div className='max-w-[2200px]'>
             <Navi />
-            <div className='lg:flex lg:justify-between lg:px-10 mt-16 mb-24 | xl:px-40 | 2xl:px-60'>
-                <img src={harmony} alt='lady' className='w-full h-50 bg-yellow-300 text-center mb-12 | md:h-72 md:mb-8 | lg:max-w-[400px] lg:order-last | xl:h-[400px] | 2xl:max-w-[500px]'/>
+            <div className='lg:flex lg:justify-between lg:items-center lg:px-10 mt-16 mb-24 | xl:px-40 | 2xl:px-60'>
+                <img src={harmony} alt='lady' className='w-full h-50 text-center mb-12 | md:h-72 md:mb-8 | lg:max-w-[400px] lg:order-last | xl:h-[400px] | 2xl:max-w-[800px] 2xl:h-[450px] 2xl:pl-20'/>
                     <div className='flex flex-col h-[420px] justify-center lg:max-w-[620px] | xl:justify-around'>
                         <h1 className='text-4xl font-semibold text-center | lg:w-[390px] lg:text-left | xl:w-full xl:text-6xl'>Build Harmony Between Your Resume and <span className='text-blue-700'>Dream Job.</span></h1>
                         <p className='text-md text-center font-light my-8 | lg:text-lg lg:text-left'>All-in-One Platform for Rewriting and Storing Resumes Optimized for Any Job Description. Ensuring Every Application is Tailored for Success.</p>
