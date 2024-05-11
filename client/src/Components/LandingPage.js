@@ -12,13 +12,15 @@ import img5 from '../assets/image 5.svg';
 import img6 from '../assets/image 6.svg';
 import img7 from '../assets/image 7.svg';
 import harmony from '../assets/harmony.svg';
+import hero from '../assets/hero.svg';
+
 
 const LandingPage = () => { 
     return ( 
         <div className='max-w-[2200px] mx-auto'>
             <Navi />
             <div className='mt-16 mb-24 | flex flex-col justify-between items-center | lg:flex-row lg:px-10 | xl:px-32 | 2xl:px-52'>
-                <img src={harmony} alt='lady' className='w-full h-50 text-center mb-12 | md:h-72 md:mb-8 | max-w-[480px] lg:h-full lg:order-last | xl:h-[400px] | 2xl:max-w-[600px] 2xl:h-[450px]'/>
+                <img src={hero} alt='lady' className='w-full h-50 text-center mb-12 | md:h-72 md:mb-8 | max-w-[600px] lg:h-full lg:order-last | xl:h-[500px] | 2xl:max-w-[700px] 2xl:h-[550px]'/>
                     <div className='flex flex-col h-[420px] justify-center | lg:max-w-[620px] | xl:justify-around'>
                         <h1 className='text-4xl font-semibold text-center | lg:w-[390px] lg:text-left | xl:w-full xl:text-6xl'>Build Harmony Between Your Resume and <span className='text-blue-600'>Dream Job.</span></h1>
                         <p className='text-md text-center font-light my-8 | lg:text-lg lg:text-left'>All-in-One Platform for Rewriting and Storing Resumes Optimized for Any Job Description. Ensuring Every Application is Tailored for Success.</p>
@@ -59,7 +61,7 @@ const LandingPage = () => {
                     <p className='text-center | xl:text-left mb-12 mx-8'>Let Resumony take care of your resume update in minutes, saving you valuable time.</p>
                 </div>
             </div>
-            <div className='flex flex-col justify-center items-center w-full h-full bg-blue-100 px-2 my-8 | lg:flex-row lg:justify-around lg:py-20'>
+            <div className='flex flex-col justify-center items-center w-full h-full bg-blue-100 px-2 my-8 | lg:flex-row lg:justify-around lg:py-20 | 2xl:px-28'>
                 <div>
                     <img src={harmony} alt='lady' className='w-full h-50 text-center max-w-[480px] | md:h-72 | lg:h-[400px]| xl:h-[400px] | 2xl:max-w-[600px] 2xl:h-[450px]'/>
                 </div>
