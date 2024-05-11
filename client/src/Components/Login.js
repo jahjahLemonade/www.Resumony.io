@@ -27,7 +27,7 @@ const Login = () => {
         <div>
             <Navi />
             <div className="flex flex-col justify-center items-center mt-12">
-                <h1 className='text-5xl font-bold mb-6'>Welcome back!</h1>
+                <h1 className='text-3xl font-bold mb-12 text-center | md:text-5xl'>Welcome back!</h1>
                 <form onSubmit={handleLogin}>
                     <div className="form-group">
                         <input type="email" className='border border-blue-400 rounded-lg w-full max-w-[400px] pl-2 h-12 mb-8 | lg:w-[250px]' placeholder="Email" />

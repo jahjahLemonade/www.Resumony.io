@@ -23,7 +23,7 @@ const Signup = () => {
         <div>
             <Navi />
             <div className="flex flex-col justify-center items-center mt-12">
-                <h1 className='text-5xl font-bold mb-6'>Create an account</h1>
+                <h1 className='text-3xl font-bold mb-12 text-center | md:text-5xl'>Create an account</h1>
                 <form onSubmit={handleSignUp}>
                     {/* Add fields for first name, last name, email, password, and confirm password */}
                     <div className="form-group">
