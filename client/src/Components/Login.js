@@ -13,7 +13,6 @@ const Login = () => {
         const password = event.target.elements[1].value
         try {
             await signInWithEmailAndPassword(auth, userEmail, password)
-            // navigate("/")
         } catch (err) {
             alert(err)
         }

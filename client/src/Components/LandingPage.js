@@ -14,7 +14,6 @@ import img7 from '../assets/image 7.svg';
 import harmony from '../assets/harmony.svg';
 import hero from '../assets/hero.svg';
 
-
 const LandingPage = () => { 
     return ( 
         <div className='max-w-[2200px] mx-auto'>

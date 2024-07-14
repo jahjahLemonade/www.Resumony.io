@@ -10,6 +10,10 @@ import UserPage from './Components/UserPage.js';
 import Feedback from './Components/Feedback.js';
 import { AuthProvider } from './Components/Auth.js';
 import CreateResume from "./Components/CreateResume.js";
+import CreatingResume from "./Components/CreatingResume.js";
+import Payment from "./Components/Payment.js";
+import Return from "./Components/Return.js";
+import PaymentPlans from "./Components/PaymentPlans.js";
 
 const App = () => {
   return (
@@ -20,11 +24,14 @@ const App = () => {
             <Route
               path="/"
               element={<PrivateRoute element={<UserPage />} />} />
-            {/* <Route path='/' element={<LandingPage />} /> */}
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
             <Route path='/create' element={<CreateResume />} />
             <Route path='/feedback' element={<Feedback />} />
+            <Route path='/creatingResume' element={<CreatingResume />} />
+            <Route path='/payment' element={<Payment />} />
+            <Route path="/return" element={<Return />} />
+            <Route path="/paymentplans" element={<PaymentPlans/>} />
           </Routes>
         </Router>
       </AuthProvider>
