@@ -48,21 +48,50 @@ const openai = new OpenAI(process.env.OPENAI_API_KEY);
 //   res.status(200).json({ prices });
 // });
 
-app.post('/create-checkout-session', async (req, res) => {
+app.post('/create-checkout-session-monthly', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
-    mode: 'payment',
+    mode: 'subscription',
     line_items: [
       {
         // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: "price_1PcZ0mP7QEN5uEyKOwwcpgJZ",
+        price: "price_1PROygP7QEN5uEyKf3TcQa39",
         quantity: 1,
       },
     ],
     ui_mode: 'embedded',
     return_url: "http://localhost:3000/return?session_id={CHECKOUT_SESSION_ID}",
   })
-
   res.send({clientSecret: session.client_secret});
+});
+
+app.post('/create-checkout-session-front-end', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    mode: 'payment',
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+        price: "price_1PROwbP7QEN5uEyKYZObimfg",
+        quantity: 1,
+      },
+    ],
+    ui_mode: 'embedded',
+    return_url: "http://localhost:3000/return?session_id={CHECKOUT_SESSION_ID}",
+  })
+  res.send({clientSecret: session.client_secret});
+});
+
+app.post('/subscription-status', async (req, res) => {
+  const { subId } = req.body
+  console.log(">>>", subId)
+  const subscription = await stripe.subscriptions.retrieve(
+    subId
+  );
+  
+  // I need renewal date and current status of subscription
+  res.send({
+    status: subscription.status,
+    renewal_date: subscription.current_period_end
+  });
 });
 
 app.get('/session-status', async (req, res) => {
@@ -70,7 +99,8 @@ app.get('/session-status', async (req, res) => {
 
   res.send({
     status: session.status,
-    customer_email: session.customer_details.email
+    customer_email: session.customer_details.email,
+    subID: session.subscription
   });
 });
 

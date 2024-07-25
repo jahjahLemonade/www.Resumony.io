@@ -35,7 +35,7 @@ const UserPage = ({ name }) => {
                 <h1 className='text-xl font-bold mb-12 text-center | md:text-2xl | lg:text-4xl | xl:text-4xl'>Welcome {currUser.email} to your user page</h1>
             </div>
             <div className="flex flex-col px-4 items-center | md:grid md:grid-cols-3 md:place-items-center | lg:grid-cols-4 | xl:grid-cols-5 | 2xl:grid-cols-6">
-                <Link to='/paymentplans' className="text-blue-700 border-blue-700 border-2 text-center rounded-lg w-full max-w-[150px] h-44 flex justify-center items-center mb-6">Payment</Link>
+                <Link to='/plans' className="text-blue-700 border-blue-700 border-2 text-center rounded-lg w-full max-w-[150px] h-44 flex justify-center items-center mb-6">Payment</Link>
                 <Link to='/create' className="text-blue-700 border-blue-700 border-2 text-center rounded-lg w-full max-w-[150px] h-44 flex justify-center items-center mb-6">Create New Resume</Link>
                 {/* i need a pending wheel for each element in the array */}
                 {pending ? <div className="flex w-full max-w-[150px] h-44 justify-center items-center mb-6"><div className="border-gray-300 h-10 w-10 animate-spin rounded-full border-8 border-t-blue-600" /></div>

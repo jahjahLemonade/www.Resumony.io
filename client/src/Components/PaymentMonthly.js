@@ -18,7 +18,7 @@ const Payment = () => {
 
     const fetchClientSecret = useCallback(() => {
         //axios call to create a checkout session
-        return axios.post('http://localhost:3001/create-checkout-session')
+        return axios.post('http://localhost:3001/create-checkout-session-monthly')
             .then((res) => res.data.clientSecret);
     }, []);
 

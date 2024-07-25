@@ -1,6 +1,6 @@
 import {initializeApp} from 'firebase/app'
 import {getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from 'firebase/auth'
-import {getFirestore, collection, doc, getDocs, addDoc, updateDoc, deleteField} from 'firebase/firestore'
+import {getFirestore, collection, doc, getDoc, getDocs, addDoc, updateDoc, deleteField} from 'firebase/firestore'
 import env from 'react-dotenv'
 
 

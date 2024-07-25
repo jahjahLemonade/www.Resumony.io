@@ -28,7 +28,7 @@ const CreateResume = () => {
             resp: resp,
             qual: qual
         }
-        navigate("/creatingResume", { state: { resume } })
+        navigate("/resume", { state: { resume } })
     }
 
     return (
