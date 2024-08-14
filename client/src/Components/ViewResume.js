@@ -20,6 +20,12 @@ const Modal = ({ resume_key, resume }) => {
         window.location.reload()
     }
 
+    const handleBulletPts = (experience) => {
+      //  When ● appears do a line break
+      return experience.replace(/●/g, '\n●')
+    }
+
+
   return (
       <>
         <button
@@ -64,7 +70,7 @@ const Modal = ({ resume_key, resume }) => {
                       <h1 className="font-bold mb-2">Summary</h1>
                       <div className="mb-4">{resume[`resume_${resume_key}`].summary}</div>
                       <h1 className="font-bold mb-2">Experience</h1>
-                      <div className="mb-4"><textarea className="w-full h-64">{resume[`resume_${resume_key}`].experience}</textarea></div>
+                      <div className="mb-4"><textarea className="w-full h-64">{handleBulletPts(resume[`resume_${resume_key}`].experience)}</textarea></div>
                     </p>
                   </div>
                   {/*footer*/}

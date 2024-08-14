@@ -20,9 +20,9 @@ const PaymentPlans = () => {
     // If subscription exist, then I'll grab data from stripe API about subscription and display it.
 
     const [disableMonthly, setDisableMonthly] = useState(false);
-    const [subId, setSubId] = useState('');
     const [status, setStatus] = useState('')
     const [renewal, setRenewalDate] = useState('')
+    const [pending, setPending] = useState(true);
 
     const { currUser } = useContext(AuthContext);
 
@@ -35,6 +35,8 @@ const PaymentPlans = () => {
         return formattedDate;
 
     }
+    
+    let subId = '';
 
     useEffect(() => {
         // check for sub_id from firestore
@@ -43,8 +45,8 @@ const PaymentPlans = () => {
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 setDisableMonthly(true);
-                setSubId(docSnap.data()[currUser.email]);
-                console.log(subId, docSnap.data()[currUser.email])
+                subId = docSnap.data()[currUser.email];
+                console.log("ID",subId, "Email",docSnap.data()[currUser.email])
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
@@ -55,9 +57,12 @@ const PaymentPlans = () => {
             const res = await axios.post('http://localhost:3001/subscription-status', { subId });
             setStatus(res.data.status)
             setRenewalDate(res.data.renewal_date)
+            setPending(false)
         }
         getSubId();
-        getSubscriptionStatus();
+        setTimeout(() => {
+            getSubscriptionStatus();
+        } , 5000)
     }, []);
 
     return (
@@ -81,8 +86,9 @@ const PaymentPlans = () => {
                     <div className='flex flex-col items-center justify-center'>
                         { !disableMonthly ? 
                             (<div></div>) 
-                            : 
-                            (<><p>***Status: {status}</p><p>{status === 'active' ? `Renewal Date: ${handleDate(renewal)}` : `End Date: ${handleDate(renewal)}`}</p></>)
+                            : (pending ? 
+                                (<div className="flex w-full max-w-[150px] justify-center items-center mb-6"><div className="border-gray-300 h-10 w-10 animate-spin rounded-full border-8 border-t-blue-600" /></div>) 
+                                : (<><p>***Status: {status}</p><p>{status === 'active' ? `Renewal Date: ${handleDate(renewal)}` : `End Date: ${handleDate(renewal)}`}</p></>))
                         }
                     </div>
                 </div>

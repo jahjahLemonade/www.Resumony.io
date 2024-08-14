@@ -155,7 +155,7 @@ app.post('/createResume', (req, res) => {
       content: `I have a info from my resume that I would like you to review and edit. Here are the details of my resume info... \n Summary: ${summary}\n Experience: ${experience}` }
     ],
     // seed: 11,
-    model: "gpt-4o",
+    model: "gpt-4o-mini",
     response_format: { "type": "json_object" }
   }).then((resp) => {
     console.log(resp)
