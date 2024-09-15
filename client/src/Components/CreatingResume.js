@@ -23,6 +23,7 @@ const CreatingResume = () => {
         const docRef = await addDoc(collection(db, "resumes"), {
           summary: resume.summary,
           experience: resume.experience,
+          skills: resume.skills,
           company: resume.company,
           role: resume.role,
           resp: resume.resp,

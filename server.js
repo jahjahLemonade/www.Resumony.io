@@ -61,7 +61,7 @@ app.post('/create-checkout-session-monthly', async (req, res) => {
     ui_mode: 'embedded',
     return_url: "http://localhost:3000/return?session_id={CHECKOUT_SESSION_ID}",
   })
-  res.send({clientSecret: session.client_secret});
+  res.send({ clientSecret: session.client_secret });
 });
 
 app.post('/create-checkout-session-front-end', async (req, res) => {
@@ -77,7 +77,7 @@ app.post('/create-checkout-session-front-end', async (req, res) => {
     ui_mode: 'embedded',
     return_url: "http://localhost:3000/return?session_id={CHECKOUT_SESSION_ID}",
   })
-  res.send({clientSecret: session.client_secret});
+  res.send({ clientSecret: session.client_secret });
 });
 
 app.post('/subscription-status', async (req, res) => {
@@ -86,7 +86,7 @@ app.post('/subscription-status', async (req, res) => {
   const subscription = await stripe.subscriptions.retrieve(
     subId
   );
-  
+
   // I need renewal date and current status of subscription
   res.send({
     status: subscription.status,
@@ -105,7 +105,7 @@ app.get('/session-status', async (req, res) => {
 });
 
 // Payment route
-app.post('/payment', async (req, res) => {  
+app.post('/payment', async (req, res) => {
   const { amount, id } = req.body;
   try {
     const payment = await stripe.paymentIntents.create({
@@ -128,32 +128,21 @@ app.post('/createResume', (req, res) => {
   // Output will be editing of the resume
   // Output returned needs to be converted to type string
 
-  const { summary, role, experience, company, resp, qual } = req.body;
+  const { summary, role, experience, skills, company, resp, qual } = req.body;
   openai.chat.completions.create({
     messages: [
-    { role: "system",
-      content: "I am re-writing certain section of my resume and I need your help. "+ 
-      "You are going to act as a professional resume writer skilled in presenting information "+ 
-      "concisely and using niche-appropriate language, while avoiding redundancy and cliché terms."+
-      "Your task is to position my experience as a solution to my target company’s pain points, "+
-      "tailoring it specifically so that it’s clear that I can manage the primary requirements of the job. "+  
-      "Based on responsibility (input by user) and qualifications (input by user) for the role (input by user) at "+ 
-      "the company (input by user). Rewrite the resume summary to include Keywords mentioned in the Job Description.c"+ 
-      "Only using info found on my resume, rewrite my work experience to be more tailored for this the role (input by user). "+ 
-      "I want you to memorize these instructions for the duration of our session. Based on my resume, "+
-      "write a professional summary that includes metrics and total years of experience, and keep it shorter "+
-      "than 500 characters. Please only output modified summary and modified work experience, make sure to "+
-      "keep the proper resume headers(job title and company) for the outputted info. Don't forget bullets under work experience. "+
-      "Always treat input and output text as it's the first time going through api. Output message in json format."
-    },
-    { role: "system",
-      content:" I would like the outout to follow thisjson format: {\"summary\": \"\", \"work_experience\": [{\"job_title\": \"\", \"company\": \"\", \"locaton\": \"\", \"duration\": \"\",\"responsibilites\": \"\"}]}"
-    },
-    { role: "user",
-      content: `Based on this ${resp} and ${qual} for a ${role} role at ${company}, Rewrite the resume summary to include Keywords mentioned in Job Description. Only using info found on my resume, rewrite my work experience to be more tailored for this ${role}.`},
-    { role: "user",
-      content: `I have a info from my resume that I would like you to review and edit. Here are the details of my resume info... \n Summary: ${summary}\n Experience: ${experience}` }
-    ],
+      {
+        role: "system",
+        content: `
+          You are a professional resume writer skilled in tailoring resumes to match specific job requirements. 
+          Your task is to create a customized resume that highlights the candidate's strengths and aligns them with the job responsibilities and qualifications.
+        `
+      },
+      { role: "user",
+        content: `Based on this ${resp} and ${qual} for a ${role} role at ${company}, Rewrite the resume summary to include Keywords mentioned in Job Description. Only using info found on my resume, rewrite my work experience to be more tailored for this ${role}.`},
+      { role: "user",
+        content: `I have a info from my resume that I would like you to review and edit. Here are the details of my resume info... \n Summary: ${summary}\n Experience: ${experience}\n Skills: ${skills}` }
+      ],
     // seed: 11,
     model: "gpt-4o-mini",
     response_format: { "type": "json_object" }
@@ -180,9 +169,10 @@ app.post('/sendEmail', (req, res) => {
     });
     res.send('Email sent');
   } catch (error) {
-      console.log(error);
-      res.send('Error sending email');
-}});
+    console.log(error);
+    res.send('Error sending email');
+  }
+});
 
 // Run server
 app.listen(PORT, () => {

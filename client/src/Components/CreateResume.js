@@ -15,6 +15,7 @@ const CreateResume = () => {
         event.preventDefault();
         const summary = event.target.summary.value;
         const experience = event.target.experience.value;
+        const skills = event.target.skills.value;
         const company = event.target.company.value;
         const role = event.target.role.value;
         const resp = event.target.resp.value;
@@ -23,6 +24,7 @@ const CreateResume = () => {
         const resume = {
             summary: summary,
             experience: experience,
+            skills: skills,
             company: company,
             role: role,
             resp: resp,
